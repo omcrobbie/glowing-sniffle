@@ -1,0 +1,42 @@
+<div class="card-body">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col" class="centered">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>
+          <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+        </td>
+        <td>
+          <div class="group" role="toolbar" aria-label="Basic example">
+            <button
+              title="Update"
+              [octicon]="{ key: 'pencil' }"
+              type="button"
+              class="btn btn-light no-bg"
+              routerLink="{{ user.id }}"
+            >
+              Update
+            </button>
+            <button
+              title="Delete"
+              [octicon]="{ key: 'trash', color: 'white' }"
+              type="button"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+.group {
+  display: flex;
+  justify-content: space-evenly;
+}
+.no-bg {
+  background-color: transparent;
+  border: 0;
+}
+th.centered {
+  text-align: center;
+}
