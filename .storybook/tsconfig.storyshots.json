@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "outDir": "./out-tsc/spec",
+    "module": "CommonJS",
+    "types": ["jest"]
+  },
+  "files": ["./typings.d.ts"]
+}

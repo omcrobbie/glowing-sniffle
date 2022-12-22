@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Test/Button Small 1`] = `
+<storybook-wrapper>
+  <storybook-button
+    ng-reflect-label="Button"
+    ng-reflect-size="small"
+  >
+    <button
+      class="storybook-button storybook-button--small storybook-button--secondary"
+      ng-reflect-ng-class="storybook-button,storybook-but"
+      ng-reflect-ng-style="[object Object]"
+      type="button"
+    >
+       Button 
+    </button>
+  </storybook-button>
+</storybook-wrapper>
+`;
