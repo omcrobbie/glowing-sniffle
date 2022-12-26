@@ -9,7 +9,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent {
-  constructor(private userService: UserService) {}
+  public users$: Observable<User[]>;
 
-  users$: Observable<User[]> = this.userService.findAll();
+  constructor(private userService: UserService) {
+    this.users$ = this.userService.findAll();
+  }
 }

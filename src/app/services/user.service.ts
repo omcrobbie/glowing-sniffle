@@ -4,7 +4,6 @@ import { Observable, Observer, tap } from 'rxjs';
 import { User } from '../models/user';
 import { ToastService } from './toast.service';
 import { Message } from '../models/message';
-import { ThisReceiver } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root',

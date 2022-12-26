@@ -163,7 +163,7 @@
         },
         {
             "name": "UserService",
-            "id": "injectable-UserService-3e00a9d666e03b8d690e7b5e8dd0099315423fd726124e8af8c6ae2b5bfaf5e83865d51f69b713ef9ddc15bfed4b055a495de897539fc52828f42691e0187b95",
+            "id": "injectable-UserService-411f0b4e56e5dffba592a7cea0d5a1c8d87265276df29d511ce6d119bf606e626e654ac44d5160207b4632c08535e1a15079d6b600f499471889b152b6e9f89e",
             "file": "src/app/services/user.service.ts",
             "properties": [
                 {
@@ -173,7 +173,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 13,
+                    "line": 12,
                     "modifierKind": [
                         121
                     ]
@@ -186,7 +186,7 @@
                     "optional": false,
                     "returnType": "Observable<User[]>",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 18,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -203,7 +203,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -238,7 +238,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -279,7 +279,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -310,7 +310,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 36,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -344,7 +344,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -373,7 +373,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { Observable, Observer, tap } from 'rxjs';\nimport { User } from '../models/user';\nimport { ToastService } from './toast.service';\nimport { Message } from '../models/message';\nimport { ThisReceiver } from '@angular/compiler';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class UserService {\n  private usersUrl: string;\n\n  constructor(private http: HttpClient, private toastService: ToastService) {\n    this.usersUrl = 'http://localhost:8080/users';\n  }\n\n  findAll(): Observable<User[]> {\n    return this.http.get<User[]>(this.usersUrl).pipe(\n      tap({\n        next: () => this.handleSuccess('Fetched all users!'),\n        error: (err) => this.handleError('Failed to fetch all', err),\n      })\n    );\n  }\n\n  findOne(id: string) {\n    return this.http.get<User>(`${this.usersUrl}/${id}`).pipe(\n      tap({\n        next: (user) => this.handleSuccess(`Fetched ${user.name}`),\n        error: () => this.handleError('Failed to fetch one'),\n      })\n    );\n  }\n\n  save(user: User) {\n    return this.http.post(this.usersUrl, user);\n  }\n  private handleSuccess(content: string) {\n    this.toastService.addMessage(new Message('success', content));\n  }\n\n  private handleError(content: string, err: Error = new Error()) {\n    this.toastService.addMessage(new Message('error', content, err));\n  }\n\n  update(id: string, user: User) {\n    return this.http.put<User>(`${this.usersUrl}/${id}`, user).pipe(\n      tap({\n        next: () => this.handleSuccess(`Sucessfully updated id ${user.id}`),\n        error: (err) => this.handleError(`Failed to update id ${user.id}`, err),\n      })\n    );\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { Observable, Observer, tap } from 'rxjs';\nimport { User } from '../models/user';\nimport { ToastService } from './toast.service';\nimport { Message } from '../models/message';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class UserService {\n  private usersUrl: string;\n\n  constructor(private http: HttpClient, private toastService: ToastService) {\n    this.usersUrl = 'http://localhost:8080/users';\n  }\n\n  findAll(): Observable<User[]> {\n    return this.http.get<User[]>(this.usersUrl).pipe(\n      tap({\n        next: () => this.handleSuccess('Fetched all users!'),\n        error: (err) => this.handleError('Failed to fetch all', err),\n      })\n    );\n  }\n\n  findOne(id: string) {\n    return this.http.get<User>(`${this.usersUrl}/${id}`).pipe(\n      tap({\n        next: (user) => this.handleSuccess(`Fetched ${user.name}`),\n        error: () => this.handleError('Failed to fetch one'),\n      })\n    );\n  }\n\n  save(user: User) {\n    return this.http.post(this.usersUrl, user);\n  }\n  private handleSuccess(content: string) {\n    this.toastService.addMessage(new Message('success', content));\n  }\n\n  private handleError(content: string, err: Error = new Error()) {\n    this.toastService.addMessage(new Message('error', content, err));\n  }\n\n  update(id: string, user: User) {\n    return this.http.put<User>(`${this.usersUrl}/${id}`, user).pipe(\n      tap({\n        next: () => this.handleSuccess(`Sucessfully updated id ${user.id}`),\n        error: (err) => this.handleError(`Failed to update id ${user.id}`, err),\n      })\n    );\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -393,7 +393,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 13,
+                "line": 12,
                 "jsdoctags": [
                     {
                         "name": "http",
@@ -1458,7 +1458,7 @@
         },
         {
             "name": "UsersListComponent",
-            "id": "component-UsersListComponent-66ec741e038ecfd7cf3ae6de793085f2c8454649579dbb05e3095940e93eeb16e1d6f38cbf59c8a86662511a34fe1a61a348d92f6c1ba2fcc37ff9f561793bfb",
+            "id": "component-UsersListComponent-63805d040511d581fb7b75fa126e84af34f7e3a289e9aab25815c72c58c4b7f6f55e861d33688b68d81679769c20d9e4532f655fecffdf89b523d731fc50924e",
             "file": "src/app/components/users-list/users-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1478,14 +1478,16 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "users$",
-                    "defaultValue": "this.userService.findAll()",
+                    "name": "userService",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Observable<User[]>",
+                    "type": "UserService",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 14,
+                    "modifierKind": [
+                        123
+                    ]
                 }
             ],
             "methodsClass": [],
@@ -1496,7 +1498,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { User } from 'src/app/models/user';\nimport { UserService } from 'src/app/services/user.service';\n\n@Component({\n  selector: 'app-users-list',\n  templateUrl: './users-list.component.html',\n  styleUrls: ['./users-list.component.scss'],\n})\nexport class UsersListComponent {\n  constructor(private userService: UserService) {}\n\n  users$: Observable<User[]> = this.userService.findAll();\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { User } from 'src/app/models/user';\nimport { UserService } from 'src/app/services/user.service';\n\n@Component({\n  selector: 'app-users-list',\n  templateUrl: './users-list.component.html',\n  styleUrls: ['./users-list.component.scss'],\n})\nexport class UsersListComponent {\n  // public users$: Observable<User[]>;\n\n  constructor(public userService: UserService) {\n    // this.users$ = this.userService.findAll();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1531,7 +1533,7 @@
                     }
                 ]
             },
-            "templateData": "<div class=\"card-body\">\n  <table class=\"table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#</th>\n        <th scope=\"col\">Name</th>\n        <th scope=\"col\">Email</th>\n        <th scope=\"col\" class=\"centered\">Actions</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let user of users$ | async\">\n        <td>{{ user.id }}</td>\n        <td>{{ user.name }}</td>\n        <td>\n          <a href=\"mailto:{{ user.email }}\">{{ user.email }}</a>\n        </td>\n        <td>\n          <div class=\"group\" role=\"toolbar\" aria-label=\"Basic example\">\n            <button\n              title=\"Update\"\n              [octicon]=\"{ key: 'pencil' }\"\n              type=\"button\"\n              class=\"btn btn-light no-bg\"\n              routerLink=\"{{ user.id }}\"\n            >\n              Update\n            </button>\n            <button\n              title=\"Delete\"\n              [octicon]=\"{ key: 'trash', color: 'white' }\"\n              type=\"button\"\n              class=\"btn btn-danger\"\n            >\n              Delete\n            </button>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+            "templateData": "<div class=\"card-body\">\n  <table class=\"table table-bordered table-striped\">\n    <thead class=\"thead-dark\">\n      <tr>\n        <th scope=\"col\">#</th>\n        <th scope=\"col\">Name</th>\n        <th scope=\"col\">Email</th>\n        <th scope=\"col\" class=\"centered\">Actions</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let user of userService.findAll() | async\">\n        <td>{{ user.id }}</td>\n        <td>{{ user.name }}</td>\n        <td>\n          <a href=\"mailto:{{ user.email }}\">{{ user.email }}</a>\n        </td>\n        <td>\n          <div class=\"group\" role=\"toolbar\" aria-label=\"Basic example\">\n            <button\n              title=\"Update\"\n              [octicon]=\"{ key: 'pencil' }\"\n              type=\"button\"\n              class=\"btn btn-light no-bg\"\n              routerLink=\"{{ user.id }}\"\n            >\n              Update\n            </button>\n            <button\n              title=\"Delete\"\n              [octicon]=\"{ key: 'trash', color: 'white' }\"\n              type=\"button\"\n              class=\"btn btn-danger\"\n            >\n              Delete\n            </button>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
         }
     ],
     "modules": [
@@ -1658,6 +1660,16 @@
                 "defaultValue": "{\n  production: false\n}"
             },
             {
+                "name": "Error",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/toast/toast.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Large",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1738,16 +1750,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "service",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/toast/toast.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "new ToastService()"
-            },
-            {
                 "name": "Small",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1806,6 +1808,26 @@
                 "deprecationMessage": "",
                 "type": "Story<ToastComponent>",
                 "defaultValue": "(args: ToastComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/users-list/users-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<UsersListComponent>",
+                "defaultValue": "(args: UsersListComponent) => ({\n  props: args,\n  moduleMetadata: {\n    declarations: [OcticonDirective],\n    imports: [RouterTestingModule, HttpClientTestingModule],\n    providers: [UserService],\n  },\n})"
+            },
+            {
+                "name": "withData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/users-list/users-list.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -1834,6 +1856,38 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/app/components/toast/toast.stories.ts": [
+                {
+                    "name": "Error",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Success",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/toast/toast.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ToastComponent>",
+                    "defaultValue": "(args: ToastComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/stories/Button.stories.ts": [
@@ -1964,36 +2018,26 @@
                     "defaultValue": "{\n  snapshot: { data: {} },\n  paramMap: new Observable(),\n} as ActivatedRoute"
                 }
             ],
-            "src/app/components/toast/toast.stories.ts": [
-                {
-                    "name": "service",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/toast/toast.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "new ToastService()"
-                },
-                {
-                    "name": "Success",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/toast/toast.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
+            "src/app/components/users-list/users-list.stories.ts": [
                 {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/components/toast/toast.stories.ts",
+                    "file": "src/app/components/users-list/users-list.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<ToastComponent>",
-                    "defaultValue": "(args: ToastComponent) => ({\n  props: args,\n})"
+                    "type": "Story<UsersListComponent>",
+                    "defaultValue": "(args: UsersListComponent) => ({\n  props: args,\n  moduleMetadata: {\n    declarations: [OcticonDirective],\n    imports: [RouterTestingModule, HttpClientTestingModule],\n    providers: [UserService],\n  },\n})"
+                },
+                {
+                    "name": "withData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/users-list/users-list.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
                 }
             ]
         },
@@ -2055,7 +2099,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "service",
+                "name": "Error",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -2105,6 +2149,26 @@
                 "name": "UsersListComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/users-list/users-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/users-list/users-list.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "withData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
