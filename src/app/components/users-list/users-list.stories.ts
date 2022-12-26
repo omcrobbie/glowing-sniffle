@@ -28,36 +28,3 @@ withData.args = {
     { name: 'drop', email: 'drop@test.com', id: '3' },
   ]),
 };
-
-// withData.parameters = {
-//   mockData: [
-//     {
-//       url: "http://localhost:8080/users",
-//       method: "GET",
-//       status: 200,
-//       response: [
-//         { name: "shit", email: "shit@test.com", id: "1" },
-//         { name: "turd", email: "turd@test.com", id: "2" },
-//         { name: "drop", email: "drop@test.com", id: "3" },
-//       ],
-//     },
-//   ],
-// };
-// withData.decorators = [
-//   moduleMetadata({
-//     providers: [
-//       {
-//         provide: UserService,
-//         useValue: () => ({
-//           findAll() {
-//             return of([
-//               { name: 'shit', email: 'shit@test.com', id: '1' },
-//               { name: 'turd', email: 'turd@test.com', id: '2' },
-//               { name: 'drop', email: 'drop@test.com', id: '3' },
-//             ]);
-//           },
-//         }),
-//       },
-//     ],
-//   }),
-// ];
