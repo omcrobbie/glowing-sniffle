@@ -52,4 +52,14 @@ export class UserService {
       })
     );
   }
+  delete(id?: string) {
+    return this.http.delete(`${this.usersUrl}/${id}`).pipe(
+      tap({
+        next: () => this.handleSuccess(`Successfully deleted id ${id}`),
+        error() {
+          throw new DOMException('you suck');
+        },
+      })
+    );
+  }
 }
