@@ -6,7 +6,7 @@ import { Message } from '../models/message';
   providedIn: 'root',
 })
 export class ToastService {
-  private messages: Message[] = [];
+  public messages: Message[] = [];
   messages$: Subject<Message[]> = new Subject();
 
   get numMessages() {
@@ -20,7 +20,6 @@ export class ToastService {
   removeMessage(index: number) {
     if (this.messages.length) {
       this.messages.splice(index, 1);
-      this.messages$.next(this.messages);
     }
   }
 }

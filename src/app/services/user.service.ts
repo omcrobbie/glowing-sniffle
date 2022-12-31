@@ -41,7 +41,7 @@ export class UserService {
   }
 
   private handleError(content: string, err: Error = new Error()) {
-    this.toastService.addMessage(new Message('error', content, err));
+    this.toastService.addMessage(new Message('error', content, err, false));
   }
 
   update(id: string, user: User) {
@@ -56,9 +56,7 @@ export class UserService {
     return this.http.delete(`${this.usersUrl}/${id}`).pipe(
       tap({
         next: () => this.handleSuccess(`Successfully deleted id ${id}`),
-        error() {
-          throw new DOMException('you suck');
-        },
+        error: (err) => this.handleError('Failed to delete the thing', err),
       })
     );
   }

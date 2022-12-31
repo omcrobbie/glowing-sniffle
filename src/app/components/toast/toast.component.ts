@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, repeat, Subscription, switchMap, take, tap } from 'rxjs';
+import { interval, Subscription, switchMap, take } from 'rxjs';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -23,6 +23,9 @@ export class ToastComponent implements OnInit, OnDestroy {
           interval(3000).pipe(take(this.toastService.numMessages))
         )
       )
-      .subscribe(() => this.toastService.removeMessage(0));
+      .subscribe(() => {
+        if (this.toastService.messages[0].autoDissmiss)
+          this.toastService.removeMessage(0);
+      });
   }
 }

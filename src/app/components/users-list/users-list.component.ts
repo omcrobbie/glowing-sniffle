@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { first, map, Observable } from 'rxjs';
+import { first, last, map, Observable, of, switchMap, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,20 +9,27 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent {
-  public users$: Observable<User[]>;
+  public users: User[] = [];
 
   constructor(private userService: UserService) {
-    this.users$ = this.userService.findAll();
+    this.getUsers();
+  }
+
+  private getUsers() {
+    this.userService
+      .findAll()
+      .pipe(last())
+      .subscribe((users) => {
+        this.users = users;
+      });
   }
 
   removeUser(id?: string) {
     this.userService
       .delete(id)
-      .pipe(first())
+      .pipe(last())
       .subscribe(() => {
-        this.users$ = this.users$.pipe(
-          map((a) => a.filter((u) => u.id !== id))
-        );
+        this.users = this.users.filter((u) => u.id !== id);
       });
   }
 }

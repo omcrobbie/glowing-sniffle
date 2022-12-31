@@ -238,6 +238,7 @@ exports[`Storyshots UsersList With Data 1`] = `
         </tbody>
       </table>
     </div>
-  </app-users-list>
+  </app-users-list><app-toast>
+  </app-toast>
 </storybook-wrapper>
 `;

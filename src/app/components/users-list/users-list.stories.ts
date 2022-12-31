@@ -5,6 +5,7 @@ import { UsersListComponent } from './users-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
+import { ToastComponent } from '../toast/toast.component';
 
 export default {
   title: 'UsersList',
@@ -13,19 +14,23 @@ export default {
 
 const Template: Story<UsersListComponent> = (args: UsersListComponent) => ({
   props: args,
+  template: `
+    <app-users-list></app-users-list>
+    <app-toast></app-toast>
+  `,
   moduleMetadata: {
-    declarations: [OcticonDirective],
+    declarations: [OcticonDirective, ToastComponent],
     imports: [RouterTestingModule, HttpClientModule],
     providers: [UserService],
   },
 });
 export const withData = Template.bind({});
 withData.args = {
-  users$: of([
+  users: [
     { name: 'shit', email: 'shit@test.com', id: '1' },
     { name: 'turd', email: 'turd@test.com', id: '2' },
     { name: 'drop', email: 'drop@test.com', id: '3' },
-  ]),
+  ],
 };
 
 export const interactive = Template.bind({});

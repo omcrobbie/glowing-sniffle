@@ -14,7 +14,7 @@ export class Message {
     }
     return this.type === 'success'
       ? 'Success!'
-      : `An error has occurred:/n${this.error?.message}`;
+      : `An error has occurred: ${this.error?.message}`;
   }
 
   get statusIcon(): OctIcon {
