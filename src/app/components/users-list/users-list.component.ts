@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { first, last, map, Observable, of, switchMap, tap } from 'rxjs';
+import { last } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 

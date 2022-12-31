@@ -1,11 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Meta, Story } from '@storybook/angular';
 import { UserService } from 'src/app/services/user.service';
 import { OcticonDirective } from 'src/app/utils/octicon.directive';
-import { UsersListComponent } from './users-list.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { of } from 'rxjs';
 import { ToastComponent } from '../toast/toast.component';
+import { UsersListComponent } from './users-list.component';
 
 export default {
   title: 'UsersList',

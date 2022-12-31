@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Observer, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { Message } from '../models/message';
 import { User } from '../models/user';
 import { ToastService } from './toast.service';
-import { Message } from '../models/message';
 
 @Injectable({
   providedIn: 'root',
