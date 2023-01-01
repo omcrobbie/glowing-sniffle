@@ -23,6 +23,10 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    "types": [
+      "jest",
+      "@testing-library/jest-dom"
     ]
   },
   "angularCompilerOptions": {
