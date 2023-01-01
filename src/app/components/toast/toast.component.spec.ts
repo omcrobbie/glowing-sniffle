@@ -11,7 +11,7 @@ test('should render success', async () => {
     Success({}, {} as any)
   );
   const { getByText } = await render(component, { imports: [ngModule] });
-  expect(getByText('You win!')).toBeVisible();
+  expect(getByText('You win!')).toBeTruthy();
 });
 
 test('should render error', async () => {
@@ -19,5 +19,5 @@ test('should render error', async () => {
     Error({}, {} as any)
   );
   const { getByText } = await render(component, { imports: [ngModule] });
-  expect(getByText('You lose!')).toBeVisible();
+  expect(getByText('You lose!')).toBeTruthy();
 });

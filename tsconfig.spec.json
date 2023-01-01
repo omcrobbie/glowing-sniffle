@@ -5,7 +5,9 @@
     "outDir": "./out-tsc/spec",
     "module": "commonJs",
     "types": [
-      "jest"
+      "jest",
+      "@types/testing-library__jest-dom"
+
     ]
   },
   "files": [
@@ -13,6 +15,7 @@
   ],
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "setup-jest.ts"
   ]
 }

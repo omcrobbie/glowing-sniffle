@@ -1,24 +1,18 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  composeStories,
+  createMountableStoryComponent,
+} from '@storybook/testing-angular';
+import { render } from '@testing-library/angular';
+import * as stories from './users-list.stories';
 
-import { UsersListComponent } from './users-list.component';
+const { WithData } = composeStories(stories);
 
-describe('UsersListComponent', () => {
-  let component: UsersListComponent;
-  let fixture: ComponentFixture<UsersListComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [UsersListComponent],
-      providers: [HttpClient, HttpHandler],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(UsersListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+test('basic render', async () => {
+  const { component, ngModule } = createMountableStoryComponent(
+    WithData({}, {} as any)
+  );
+  const { getByText } = await render(component, {
+    imports: [ngModule],
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  expect(getByText('shit')).toBeTruthy();
 });

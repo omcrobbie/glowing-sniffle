@@ -24,10 +24,6 @@
       "es2020",
       "dom"
     ],
-    "types": [
-      "jest",
-      "@testing-library/jest-dom"
-    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
