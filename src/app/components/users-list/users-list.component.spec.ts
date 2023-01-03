@@ -2,17 +2,24 @@ import {
   composeStories,
   createMountableStoryComponent,
 } from '@storybook/testing-angular';
-import { render } from '@testing-library/angular';
+import { fireEvent, render, waitFor } from '@testing-library/angular';
+import { initMocks } from 'src/app/utils/mocks/mswHelper';
 import * as stories from './users-list.stories';
 
-const { WithData } = composeStories(stories);
+const { Interactive } = composeStories(stories);
+const server = initMocks(Interactive);
 
-test('basic render', async () => {
+beforeAll(() => server.listen());
+afterAll(() => server.close());
+
+test('should delete', async () => {
   const { component, ngModule } = createMountableStoryComponent(
-    WithData({}, {} as any)
+    Interactive({}, {} as any)
   );
-  const { getByText } = await render(component, {
+  const c = await render(component, {
     imports: [ngModule],
   });
-  expect(getByText('shit')).toBeTruthy();
+  await waitFor(() => expect(c.getByText('shit')).toBeTruthy());
+  fireEvent.click(c.getAllByTitle('Delete')[0]);
+  await waitFor(() => expect(c.getByText('Successfully deleted id 1')));
 });
