@@ -19,7 +19,7 @@ test('should delete', async () => {
   const c = await render(component, {
     imports: [ngModule],
   });
-  await waitFor(() => expect(c.getByText('shit')).toBeTruthy());
+  await waitFor(() => expect(c.getByText('test')).toBeTruthy());
   fireEvent.click(c.getAllByTitle('Delete')[0]);
   await waitFor(() => expect(c.getByText('Successfully deleted id 1')));
 });

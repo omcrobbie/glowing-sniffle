@@ -23,9 +23,13 @@ export class ToastComponent implements OnInit, OnDestroy {
           interval(3000).pipe(take(this.toastService.numMessages))
         )
       )
-      .subscribe(() => {
-        if (this.toastService.messages[0].autoDissmiss)
-          this.toastService.removeMessage(0);
+      .subscribe((n) => {
+        const msg = this.toastService.messages.find((m) => m.autoDissmiss);
+        if (msg) {
+          this.toastService.removeMessage(
+            this.toastService.messages.indexOf(msg)
+          );
+        }
       });
   }
 }

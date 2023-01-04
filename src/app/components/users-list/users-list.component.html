@@ -41,3 +41,12 @@
     </tbody>
   </table>
 </div>
+<button
+  *ngIf="debug"
+  title="debug-fetch"
+  type="button"
+  class="btn btn-info"
+  (click)="getUsers()"
+>
+  Fetch all
+</button>

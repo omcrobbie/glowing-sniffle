@@ -40,6 +40,7 @@
     "@storybook/addon-storyshots": "^6.5.14",
     "@storybook/angular": "^6.5.14",
     "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack5": "^6.5.14",
     "@storybook/testing-angular": "^0.0.12",
     "@storybook/testing-library": "^0.0.13",
