@@ -7,10 +7,7 @@ import { initMocks } from 'src/app/utils/mocks/mswHelper';
 import * as stories from './users-list.stories';
 
 const { Interactive } = composeStories(stories);
-const server = initMocks(Interactive);
-
-beforeAll(() => server.listen());
-afterAll(() => server.close());
+initMocks(Interactive).registerHooks();
 
 test('should delete', async () => {
   const { component, ngModule } = createMountableStoryComponent(

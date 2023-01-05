@@ -11,7 +11,10 @@ import {
 } from 'msw';
 import { setupServer, SetupServerApi } from 'msw/node';
 
-export function initMocks(...storyFns: Story[]): SetupServerApi {
+export function initMocks(...storyFns: Story[]): {
+  server: SetupServerApi;
+  registerHooks: () => void;
+} {
   const mswHandlers: RestHandler<MockedRequest<DefaultBodyType>>[] = [];
   storyFns.forEach((storyFn) => {
     if (storyFn.parameters) {
@@ -43,5 +46,20 @@ export function initMocks(...storyFns: Story[]): SetupServerApi {
       );
     }
   });
-  return setupServer(...mswHandlers);
+  const server = setupServer(...mswHandlers);
+  const registerHooks = () => {
+    beforeAll(() => {
+      console.log('BEFORE_ALL');
+      server.listen();
+    });
+    afterEach(() => {
+      console.log('AFTER_EACH');
+      server.resetHandlers();
+    });
+    afterAll(() => {
+      console.log('AFTER_ALL');
+      server.close();
+    });
+  };
+  return { server, registerHooks };
 }
