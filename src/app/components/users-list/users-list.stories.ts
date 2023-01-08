@@ -5,6 +5,8 @@ import { expect } from '@storybook/jest';
 import { fireEvent, waitFor, within } from '@storybook/testing-library';
 import { UserService } from 'src/app/services/user.service';
 import { OcticonDirective } from 'src/app/utils/octicon.directive';
+import { UsersList } from 'src/react/components/UsersList/UsersList';
+import { CustomReactComponentWrapperComponent } from 'src/react/wrapper';
 import { ToastComponent } from '../toast/toast.component';
 import { UsersListComponent } from './users-list.component';
 
@@ -13,7 +15,11 @@ export default {
   component: UsersListComponent,
   decorators: [
     moduleMetadata({
-      declarations: [OcticonDirective, ToastComponent],
+      declarations: [
+        OcticonDirective,
+        ToastComponent,
+        CustomReactComponentWrapperComponent,
+      ],
       imports: [RouterTestingModule, HttpClientModule],
       providers: [UserService],
     }),
@@ -70,4 +76,13 @@ Interactive.play = async ({ canvasElement }) => {
   await waitFor(() =>
     expect(c.getByText('Successfully deleted id 1')).toBeTruthy()
   );
+};
+
+export const ReactComponentInteractive = Template.bind({});
+ReactComponentInteractive.args = {
+  reactComponent: UsersList,
+  useReact: true,
+};
+ReactComponentInteractive.parameters = {
+  ...Interactive.parameters,
 };

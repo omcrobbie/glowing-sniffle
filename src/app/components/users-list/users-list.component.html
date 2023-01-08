@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card-body" *ngIf="!useReact">
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
@@ -50,3 +50,9 @@
 >
   Fetch all
 </button>
+<ng-container *ngIf="useReact">
+  <app-wrapper
+    [Component]="reactComponent"
+    [props]="{users, removeUser}"
+  ></app-wrapper>
+</ng-container>
