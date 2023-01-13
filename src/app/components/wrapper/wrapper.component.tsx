@@ -11,7 +11,8 @@ import {
 } from "@angular/core";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { UsersProvider } from "./hooks/user-hook";
+import { BrowserRouter, RouterProvider } from "react-router-dom";
+import { router } from "../../../react/components/Router";
 
 const containerElementName = "customReactComponentContainer";
 
@@ -47,12 +48,22 @@ export class CustomReactComponentWrapperComponent
     if (!this.root) {
       this.root = ReactDOM.createRoot(this.containerRef.nativeElement);
     }
-    this.root.render(
-      <React.StrictMode>
-        <UsersProvider>
-          <Component {...props} />
-        </UsersProvider>
-      </React.StrictMode>
-    );
+    if (Component) {
+      this.root.render(
+        <React.StrictMode>
+          {/* <UsersProvider> */}
+          <BrowserRouter>
+            <Component {...props} />
+          </BrowserRouter>
+          {/* </UsersProvider> */}
+        </React.StrictMode>
+      );
+    } else {
+      this.root.render(
+        <React.StrictMode>
+          <RouterProvider router={router} />
+        </React.StrictMode>
+      );
+    }
   }
 }

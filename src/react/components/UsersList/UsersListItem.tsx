@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
+import { useNavigate } from "react-router-dom";
 import { User } from "src/app/models/user";
-import { useNav } from "src/react/hooks/nav-hook";
 
 interface Props {
   user: User;
@@ -10,7 +10,7 @@ export const UsersListItem: FunctionComponent<Props> = ({
   user,
   deleteUser,
 }) => {
-  const { goTo } = useNav();
+  const navigate = useNavigate();
   return (
     <tr>
       <td>{user.id}</td>
@@ -25,7 +25,7 @@ export const UsersListItem: FunctionComponent<Props> = ({
             // [octicon]="{ key: 'pencil' }"
             type="button"
             className="btn btn-light no-bg"
-            onClick={() => goTo(user.id)}
+            onClick={() => navigate(user.id!.toString())}
           >
             Update
           </button>

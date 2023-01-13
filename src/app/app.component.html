@@ -1,28 +1,27 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card bg-dark my-5">
-        <div class="card-body">
-          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <a routerLink="/users" class="btn btn-info">List Users</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/add_user" class="btn btn-info">Add User</a>
-            </li>
-          </ul>
+<ng-container *ngIf="!useReact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-dark my-5">
+          <div class="card-body">
+            <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+            <ul class="text-center list-inline py-3">
+              <li class="list-inline-item">
+                <a routerLink="/users" class="btn btn-info">List Users</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/add_user" class="btn btn-info">Add User</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <router-outlet></router-outlet>
       </div>
-      <router-outlet></router-outlet>
     </div>
   </div>
-</div>
-<div id="myReactComponentContainer">
-  <!-- <app-my-component
-    [counter]="counter"
-    (componentClick)="handleOnClick($event)"
-  ></app-my-component> -->
-</div>
 
-<app-toast></app-toast>
+  <app-toast></app-toast>
+</ng-container>
+<ng-container *ngIf="useReact">
+  <app-wrapper></app-wrapper>
+</ng-container>

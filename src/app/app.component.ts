@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string;
+  useReact = true;
 
   constructor() {
     this.title = 'Spring Boot - Angular Application';

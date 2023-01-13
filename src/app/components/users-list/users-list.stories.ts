@@ -3,10 +3,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { expect } from '@storybook/jest';
 import { fireEvent, waitFor, within } from '@storybook/testing-library';
+import { CustomReactComponentWrapperComponent } from 'src/app/components/wrapper/wrapper.component';
 import { UserService } from 'src/app/services/user.service';
 import { OcticonDirective } from 'src/app/utils/octicon.directive';
-import { UsersList } from 'src/react/components/UsersList/UsersList';
-import { CustomReactComponentWrapperComponent } from 'src/react/wrapper';
 import { ToastComponent } from '../toast/toast.component';
 import { UsersListComponent } from './users-list.component';
 
@@ -80,7 +79,6 @@ Interactive.play = async ({ canvasElement }) => {
 
 export const ReactComponentInteractive = Template.bind({});
 ReactComponentInteractive.args = {
-  reactComponent: UsersList,
   useReact: true,
 };
 ReactComponentInteractive.parameters = {

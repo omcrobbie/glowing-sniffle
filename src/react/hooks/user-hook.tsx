@@ -5,35 +5,32 @@ import React, {
   useState,
 } from "react";
 import { User } from "src/app/models/user";
+import { deleteUser, findAll } from "./use-fetch";
 
 interface Props {
   users?: User[];
-  deleteUser: (id?: string) => void;
+  refreshData: () => Promise<void>;
+  deleteUser: (id?: string) => Promise<void>;
 }
 const context = React.createContext<Props | null>(null);
-
-const url = "http://localhost:8080/users";
 
 export const UsersProvider: FunctionComponent<any> = ({ children }) => {
   const [users, setUsers] = useState<User[] | undefined>();
 
-  const findAll = async (): Promise<User[]> => {
-    const data = await fetch(url, { method: "GET" });
-    return data.json();
-  };
+  const refreshData = () => findAll().then((data) => setUsers(data));
   useEffect(() => {
     if (!users) {
-      findAll().then((data) => setUsers(data));
+      refreshData();
     }
   }, []);
 
-  const deleteUser = (id?: string) => {
-    return fetch(`${url}/${id}`, { method: "DELETE" }).then(() =>
+  const _deleteUser = (id?: string) => {
+    return deleteUser(id).then(() =>
       setUsers(users?.filter((u) => u.id !== id))
     );
   };
 
-  const value = { users, deleteUser };
+  const value = { users, deleteUser: _deleteUser, refreshData };
   return <context.Provider value={value}>{children}</context.Provider>;
 };
 

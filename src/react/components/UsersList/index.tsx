@@ -1,9 +1,19 @@
 import React from "react";
-import { useUsers } from "../../hooks/user-hook";
+import { User } from "src/app/models/user";
+import { useUsers } from "src/react/hooks/user-hook";
 import { UsersListItem } from "./UsersListItem";
 
-export const UsersList = () => {
+export const UsersListConnected = () => {
   const { users, deleteUser } = useUsers();
+  return <UsersList users={users} removeUser={deleteUser} />;
+};
+export const UsersList = ({
+  users,
+  removeUser,
+}: {
+  users?: User[];
+  removeUser: any;
+}) => {
   return (
     <div className="card-body">
       <table className="table table-bordered table-striped">
@@ -19,7 +29,7 @@ export const UsersList = () => {
         </thead>
         <tbody>
           {users?.map((user) => (
-            <UsersListItem key={user.id} user={user} deleteUser={deleteUser} />
+            <UsersListItem key={user.id} user={user} deleteUser={removeUser} />
           ))}
         </tbody>
       </table>

@@ -58,6 +58,7 @@
     "jest": "^28.1.3",
     "jest-preset-angular": "^12.2.3",
     "msw": "^0.49.2",
+    "react-router-dom": "^6.6.1",
     "storybook-addon-mock": "^3.2.0",
     "ts-jest": "^29.0.3",
     "typescript": "~4.7.2"
