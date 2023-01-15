@@ -12,7 +12,7 @@ import { UsersList } from 'src/react/components/UsersList';
 export class UsersListComponent implements OnInit {
   public users: User[] = [];
   public debug = false;
-  public useReact = true;
+  public useReact = false;
   public reactComponent = UsersList;
 
   constructor(private userService: UserService) {}

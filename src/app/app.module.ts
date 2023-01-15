@@ -11,6 +11,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { OcticonDirective } from './utils/octicon.directive';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { OcticonDirective } from './utils/octicon.directive';
     ToastComponent,
     WrapperComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent],
 })
