@@ -22,9 +22,7 @@ const containerElementName = "customReactComponentContainer";
   // styleUrls: [''],
   encapsulation: ViewEncapsulation.None,
 })
-export class CustomReactComponentWrapperComponent
-  implements OnChanges, OnDestroy, AfterViewInit
-{
+export class WrapperComponent implements OnChanges, OnDestroy, AfterViewInit {
   @ViewChild(containerElementName, { static: true }) containerRef!: ElementRef;
 
   @Input() Component: any;

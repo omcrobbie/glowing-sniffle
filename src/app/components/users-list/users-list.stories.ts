@@ -6,7 +6,7 @@ import { fireEvent, waitFor, within } from '@storybook/testing-library';
 import { UserService } from 'src/app/services/user.service';
 import { OcticonDirective } from 'src/app/utils/octicon.directive';
 import { ToastComponent } from '../toast/toast.component';
-import { CustomReactComponentWrapperComponent } from '../wrapper/wrapper.component';
+import { WrapperComponent } from '../wrapper/wrapper.component';
 import { UsersListComponent } from './users-list.component';
 
 export default {
@@ -14,11 +14,7 @@ export default {
   component: UsersListComponent,
   decorators: [
     moduleMetadata({
-      declarations: [
-        OcticonDirective,
-        ToastComponent,
-        CustomReactComponentWrapperComponent,
-      ],
+      declarations: [OcticonDirective, ToastComponent, WrapperComponent],
       imports: [RouterTestingModule, HttpClientModule],
       providers: [UserService],
     }),

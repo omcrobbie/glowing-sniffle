@@ -1,14 +1,14 @@
 import { Meta, Story } from "@storybook/angular";
 import { UserForm } from "src/react/components/UserForm";
 import { UsersList } from "src/react/components/UsersList";
-import { CustomReactComponentWrapperComponent } from "./wrapper.component";
+import { WrapperComponent } from "./wrapper.component";
 
 export default {
   title: "Wrapper",
-  component: CustomReactComponentWrapperComponent,
+  component: WrapperComponent,
 } as Meta;
 
-const Template: Story<CustomReactComponentWrapperComponent> = (args) => ({
+const Template: Story<WrapperComponent> = (args) => ({
   props: args,
   template: `<app-wrapper [Component]="Component" [props]="props"></app-wrapper>`,
 });

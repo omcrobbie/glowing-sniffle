@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CustomReactComponentWrapperComponent } from 'src/app/components/wrapper/wrapper.component';
+import { WrapperComponent } from 'src/app/components/wrapper/wrapper.component';
 import { AppComponent } from './app.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
@@ -20,7 +20,7 @@ import { OcticonDirective } from './utils/octicon.directive';
     UserDetailComponent,
     OcticonDirective,
     ToastComponent,
-    CustomReactComponentWrapperComponent,
+    WrapperComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
