@@ -1,11 +1,16 @@
 import React from "react";
 import { User } from "src/app/models/user";
-import { useUsers } from "src/react/hooks/user-hook";
+import { useDeleteUser, useFetchUsers } from "src/react/utils/queries";
 import { UsersListItem } from "./UsersListItem";
 
 export const UsersListConnected = () => {
-  const { users, deleteUser } = useUsers();
-  return <UsersList users={users} removeUser={deleteUser} />;
+  const fetchUsers = useFetchUsers();
+  const deleteUser = useDeleteUser();
+
+  if (fetchUsers.isLoading) {
+    return <div>Loading...</div>;
+  }
+  return <UsersList users={fetchUsers.data} removeUser={deleteUser} />;
 };
 export const UsersList = ({
   users,

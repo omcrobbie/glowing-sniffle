@@ -3,10 +3,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { expect } from '@storybook/jest';
 import { fireEvent, waitFor, within } from '@storybook/testing-library';
-import { CustomReactComponentWrapperComponent } from 'src/app/components/wrapper/wrapper.component';
 import { UserService } from 'src/app/services/user.service';
 import { OcticonDirective } from 'src/app/utils/octicon.directive';
 import { ToastComponent } from '../toast/toast.component';
+import { CustomReactComponentWrapperComponent } from '../wrapper/wrapper.component';
 import { UsersListComponent } from './users-list.component';
 
 export default {
@@ -39,6 +39,7 @@ WithData.args = {
     { name: 'test2', email: 'test2@test.com', id: '2' },
     { name: 'test3', email: 'test3@test.com', id: '3' },
   ],
+  useReact: false,
 };
 
 export const Interactive = Template.bind({});

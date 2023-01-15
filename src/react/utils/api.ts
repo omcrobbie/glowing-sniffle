@@ -1,12 +1,5 @@
 import { User } from 'src/app/models/user';
 
-interface Props {
-  findAll: () => Promise<User[]>;
-  findOne: (id?: string) => Promise<User>;
-  saveUser: (user: User) => Promise<Response>;
-  deleteUser: (id?: string) => Promise<Response>;
-  updateUser: (user: User, id?: string) => Promise<Response>;
-}
 const url = 'http://localhost:8080/users';
 
 const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -27,9 +20,5 @@ export const saveUser = (user: User) =>
 export const deleteUser = (id?: string) =>
   fetch(`${url}/${id}`, { method: 'DELETE' });
 
-export const updateUser = (user: User, id?: string) =>
+export const updateUser = ({ user, id }: { user: User; id?: string }) =>
   fetch(`${url}/${id}`, { method: 'PUT', body: JSON.stringify(user), headers });
-
-export const useFetch = (): Props => {
-  return { findAll, findOne, saveUser, deleteUser, updateUser };
-};

@@ -51,11 +51,9 @@ export class CustomReactComponentWrapperComponent
     if (Component) {
       this.root.render(
         <React.StrictMode>
-          {/* <UsersProvider> */}
           <BrowserRouter>
             <Component {...props} />
           </BrowserRouter>
-          {/* </UsersProvider> */}
         </React.StrictMode>
       );
     } else {

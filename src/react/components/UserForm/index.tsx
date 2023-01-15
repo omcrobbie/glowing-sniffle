@@ -1,25 +1,29 @@
 import React, { FormEvent, FunctionComponent, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { User } from "src/app/models/user";
-import { saveUser, updateUser } from "src/react/hooks/use-fetch";
-import { useUsers } from "src/react/hooks/user-hook";
+import { useMutateUsers } from "src/react/utils/queries";
 
 export const UserFormConnected = () => {
   const user: User = useLoaderData() as User;
-  const { refreshData } = useUsers();
-  return <UserForm user={user} refreshData={refreshData} />;
+  const { mutateUsers, update, save } = useMutateUsers(user);
+  if (update.isLoading) {
+    return <div>Updating user...</div>;
+  }
+  if (save.isLoading) {
+    return <div>Saving user...</div>;
+  }
+  return <UserForm user={user} mutationFn={mutateUsers} />;
 };
 
 interface Props {
   user?: User;
-  refreshData?: () => Promise<void>;
+  mutationFn: (user: User, id?: string) => void;
 }
-export const UserForm: FunctionComponent<Props> = ({ user, refreshData }) => {
+export const UserForm: FunctionComponent<Props> = ({ user, mutationFn }) => {
   const [formState, setFormState] = useState({
     name: user?.name,
     email: user?.email,
   });
-  const navigate = useNavigate();
   const { name, email } = formState;
   const validName = !!name;
   const validEmail = !!email && email.includes("@");
@@ -27,12 +31,7 @@ export const UserForm: FunctionComponent<Props> = ({ user, refreshData }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const payload = new User(name, email);
-    if (!user) {
-      await saveUser(payload);
-    } else {
-      await updateUser(payload, user.id);
-    }
-    refreshData?.().then(() => navigate("/users"));
+    mutationFn(payload, user?.id);
   };
   return (
     <div className="card my-5">
